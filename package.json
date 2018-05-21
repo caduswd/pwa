@@ -1,26 +1,20 @@
 {
-  "name": "pwa",
+  "name": "todo",
   "version": "1.0.0",
-  "description": "teste",
+  "description": "",
   "main": "app.bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "cadu",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "web-push": "^3.3.0"
+    "web-push": "^3.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.1.2",
-    "webpack-dev-server": "^3.1.3"
-  },
-  "keywords": [
-    "pwa"
-  ]
+    "webpack": "^3.5.5"
+  }
 }

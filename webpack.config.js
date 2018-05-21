@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
 
 module.exports = {
   entry: {
@@ -8,6 +10,7 @@ module.exports = {
   output: {
     filename: '[name].js'
   },
+
   optimization:{
     minimizer:[
       new UglifyJsPlugin({
@@ -18,23 +21,13 @@ module.exports = {
           ecma:6,
           mangle:true
         },
-        sourceMarp:true
+        sourceMap:false
       })    
 
     ]
 
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false,
-        },
-        output: {
-          comments: false,
-        },
-        sourceMap: true
-    }),
-  ],
+
   module: {
     rules: [
       {
