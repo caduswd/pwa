@@ -1,3 +1,5 @@
+const SERVER_URL = 'http://localhost:3005/';
+
 let request,
     db;
 
@@ -5,7 +7,25 @@ function getObjectStore(){
     return db.transaction(['ToDoItems'], 'readwrite').objectStore('ToDoItems');
 }
 
+function getAll(){
+    return fetch(SERVER_URL).then(response => response.json());
+}
+
+function postAll(obj){
+    return fetch(SERVER_URL, {
+        'method': 'POST',
+        'Content-Type': 'application/json',
+        'body': JSON.stringify(obj)
+    })
+        .then(response => response.json())
+        .then(items => {
+            navigator.serviceWorker.controller.postMessage('updateScreens');
+            return items;
+        })
+}
+
 export const DB = {
+    getAll, postAll,
     start(){
         return new Promise(resolve => {
             request = indexedDB.open('toDo', 1);
@@ -32,12 +52,14 @@ export const DB = {
             }
         })
     },
-    findAll(){
+    findAll(location = 'server'){
         return new Promise(resolve => {
+
             var request = getObjectStore().getAll();
             request.onsuccess = (event) => {
                 resolve(request.result);
             }
+
         })
     },
     insert(item){
@@ -49,6 +71,7 @@ export const DB = {
             request.onsuccess = (event) => {
                 resolve(this.findAll())
             }
+
         })
     },
     update(item){
