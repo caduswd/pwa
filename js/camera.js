@@ -36,7 +36,7 @@ export const Camera = {
     stop(){
         if(stream){
             videoElement = '';
-            stream.getVideoTrack()[0].stop();
+            stream.getVideoTracks()[0].stop();
             stream = null;
         }
     },
